@@ -25,24 +25,36 @@ O que começou como um projeto para navegadores se transformou em algo muito mai
 Vamos ver na prática como o Dart evoluiu ao longo do tempo:
 
 ```dart
-// Dart 1.0 (opcional types) - Versão antiga
-var name = 'João';
-var age; // poderia ser qualquer tipo - perigoso!
-
-// Dart 2.0+ (sound null safety) - Versão moderna
-String name = 'João';
-int? age; // explicitamente nullable - mais seguro!
+// Exemplo histórico: Dart 1.0 vs Dart 2.0+
 
 void exemploEvolucao() {
-  // Versão antiga: podia gerar erros em tempo de execução
-  // age = 'trinta'; // Isso compilava, mas quebrava o app!
+  print('--- Como era no Dart 1.0 (opcional types) ---');
+  print('var name = "João";');
+  print('var age; // poderia ser qualquer tipo - perigoso!');
+  print('age = "trinta"; // Isso compilava, mas podia quebrar o app!');
+  print('');
+  
+  print('--- Como é no Dart 2.0+ (sound null safety) ---');
+  String name = 'João';
+  int? age; // explicitamente nullable - mais seguro!
   
   // Versão moderna: erros capturados antes mesmo de executar
   age = 30; // ✅ Correto
   // age = 'trinta'; // ❌ Erro de compilação - muito melhor!
   
+  print('String name = "João";');
+  print('int? age; // explicitamente nullable');
+  print('age = 30; // ✅ Correto');
+  print('// age = "trinta"; // ❌ Erro de compilação');
+  print('');
+  print('Resultado:');
   print('Nome: $name');
   print('Idade: ${age ?? 'Não informado'}');
+}
+
+void main() {
+  print('=== Demonstrando a Evolução do Dart ===');
+  exemploEvolucao();
 }
 ```
 
@@ -82,6 +94,11 @@ void exemploImperativo() {
   }
   
   print('Jogo finalizado! Pontuação final: $pontuacao (Nível $nivel)');
+}
+
+void main() {
+  print('=== Sistema de Pontuação do Jogo ===');
+  exemploImperativo();
 }
 ```
 
@@ -130,16 +147,20 @@ class Funcionario {
 void exemploOrientadoObjetos() {
   // Criando funcionários
   var maria = Funcionario('Maria Silva', 'Desenvolvedora', 5000.0);
-  var joão = Funcionario('João Santos', 'Designer', 4500.0);
+  var joao = Funcionario('João Santos', 'Designer', 4500.0);
   
   print('=== Funcionários Contratados ===');
   maria.apresentar();
   print('---');
-  joão.apresentar();
+  joao.apresentar();
   
   print('\n=== Aplicando Aumentos ===');
   maria.darAumento(10.0);
-  joão.darAumento(8.5);
+  joao.darAumento(8.5);
+}
+
+void main() {
+  exemploOrientadoObjetos();
 }
 ```
 
@@ -211,6 +232,10 @@ void exemploFuncional() {
     print('${venda['produto']}: R\$ ${(venda['valor_com_desconto'] as double).toStringAsFixed(2)}');
   });
 }
+
+void main() {
+  exemploFuncional();
+}
 ```
 
 **Como testar:**
@@ -265,26 +290,23 @@ void exemploMultiplataforma() {
   
   print('Dart suporta: $plataformasSuportadas');
 }
+
+void main() {
+  exemploMultiplataforma();
+}
 ```
 
-**Como testar em diferentes ambientes:**
-
-**Para Desktop/Mobile:**
+**Como testar:**
 1. Salve como `detector_plataforma.dart`
 2. Execute: `dart run detector_plataforma.dart`
-
-**Para Web:**
-1. Crie um projeto web: `dart create -t web meu_projeto_web`
-2. Substitua o conteúdo de `web/main.dart` pelo código acima
-3. Execute: `dart run -d web`
-4. Abra o navegador no endereço mostrado
+3. O código detectará automaticamente que está rodando no desktop/terminal
 
 ### Exemplo Real: Sistema de Log Multiplataforma
 
 Vamos criar algo que você usaria no mundo real - um sistema de log que funciona em qualquer plataforma:
 
 ```dart
-import 'dart:io' if (dart.library.html) 'dart:html' as html;
+import 'dart:io' if (dart.library.html) 'dart:html';
 
 abstract class Logger {
   void log(String mensagem);
@@ -349,12 +371,16 @@ void exemploLoggerMultiplataforma() {
   
   logger.log('Sistema de log funcionando perfeitamente!');
 }
+
+void main() {
+  exemploLoggerMultiplataforma();
+}
 ```
 
 **Como testar:**
 1. Salve como `logger_multiplataforma.dart`
-2. Teste no desktop: `dart run logger_multiplataforma.dart`
-3. Para testar na web, siga os passos do exemplo anterior
+2. Execute: `dart run logger_multiplataforma.dart`
+3. Observe como o sistema de log funciona perfeitamente no terminal
 
 ## Resumo do Capítulo
 
