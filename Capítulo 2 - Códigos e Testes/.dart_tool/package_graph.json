@@ -1,0 +1,14 @@
+{
+  "roots": [
+    "exemplo_sistema_completo"
+  ],
+  "packages": [
+    {
+      "name": "exemplo_sistema_completo",
+      "version": "0.0.0",
+      "dependencies": [],
+      "devDependencies": []
+    }
+  ],
+  "configVersion": 1
+}
